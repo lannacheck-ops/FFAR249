@@ -1,20 +1,117 @@
-/*********************************************
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-Here is a description of any special CSS used.
-In this case it's just padding and margin to 0
-and then centring the canvas (and anything else)
-using the CSS Grid.
-
-Also hides overflow.
-
-**********************************************/
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
 
 body {
-  padding: 0;
-  margin: 0;
-  display: grid; /* Set up the grid and justify/align to center */
-  justify-content: center;
-  align-content: center;
-  height: 100vh; /* Body is the height of the viewport */
-  overflow: hidden; /* Hide anything that goes off the window size */
+    overflow: hidden;
+    background: #1f1f1f;
+}
+
+/* Main section */
+.start-screen {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4vw 5vw;
+}
+
+/* Background layer */
+.start-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Text block */
+.start-content {
+    position: relative;
+    z-index: 3;
+    max-width: 50%;
+    align-self: flex-start;
+    margin-top: 7vh;
+}
+
+.title {
+    font-family: "Walter Turncoat", cursive;
+    color: #ffffff;
+    font-size: clamp(2.4rem, 5vw, 5.5rem);
+    line-height: 1.15;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* Character area */
+.character-wrap {
+    position: absolute;
+    right: 4vw;
+    bottom: 2vh;
+    z-index: 3;
+    width: min(42vw, 560px);
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.character {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .start-screen {
+        padding: 6vw 5vw;
+    }
+
+    .start-content {
+        max-width: 60%;
+        margin-top: 6vh;
+    }
+
+    .character-wrap {
+        width: min(48vw, 420px);
+        right: 2vw;
+        bottom: 2vh;
+    }
+}
+
+@media (max-width: 640px) {
+    .start-screen {
+        padding: 8vw 6vw;
+    }
+
+    .start-content {
+        max-width: 100%;
+        margin-top: 2vh;
+    }
+
+    .title {
+        font-size: clamp(2rem, 9vw, 3.3rem);
+        line-height: 1.2;
+    }
+
+    .character-wrap {
+        width: 55vw;
+        right: 2vw;
+        bottom: 2vh;
+        opacity: 0.95;
+    }
 }
