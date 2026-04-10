@@ -13,9 +13,9 @@ body {
 body {
     overflow: hidden;
     background: #1f1f1f;
+    cursor: pointer;
 }
 
-/* Main section */
 .start-screen {
     position: relative;
     width: 100vw;
@@ -27,7 +27,6 @@ body {
     padding: 4vw 5vw;
 }
 
-/* Background layer */
 .start-bg {
     position: absolute;
     inset: 0;
@@ -38,7 +37,6 @@ body {
     pointer-events: none;
 }
 
-/* Text block */
 .start-content {
     position: relative;
     z-index: 3;
@@ -57,7 +55,29 @@ body {
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
 }
 
-/* Character area */
+.click-start {
+    margin-top: 1.5rem;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: clamp(1rem, 1.6vw, 1.4rem);
+    color: #ffffff;
+    opacity: 1;
+    animation: fadePulse 1.5s infinite ease-in-out;
+}
+
+@keyframes fadePulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.2;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
 .character-wrap {
     position: absolute;
     right: 4vw;
@@ -75,29 +95,18 @@ body {
     display: block;
 }
 
-/* Responsive */
 @media (max-width: 900px) {
-    .start-screen {
-        padding: 6vw 5vw;
-    }
-
     .start-content {
         max-width: 60%;
-        margin-top: 6vh;
     }
 
     .character-wrap {
         width: min(48vw, 420px);
         right: 2vw;
-        bottom: 2vh;
     }
 }
 
 @media (max-width: 640px) {
-    .start-screen {
-        padding: 8vw 6vw;
-    }
-
     .start-content {
         max-width: 100%;
         margin-top: 2vh;
@@ -105,13 +114,13 @@ body {
 
     .title {
         font-size: clamp(2rem, 9vw, 3.3rem);
-        line-height: 1.2;
+    }
+
+    .click-start {
+        font-size: 1rem;
     }
 
     .character-wrap {
         width: 55vw;
-        right: 2vw;
-        bottom: 2vh;
-        opacity: 0.95;
     }
 }

@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    background: #111;
+}
+
+#game {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* CURTAINS */
+#curtainLeft {
+    position: absolute;
+    left: -200px;
+    top: 0;
+    height: 100%;
+    z-index: 5;
+}
+
+#curtainRight {
+    position: absolute;
+    right: -200px;
+    top: 0;
+    height: 100%;
+    z-index: 5;
+}
+
+/* STAGE */
+#stage {
+    position: absolute;
+    bottom: 18%;
+    left: 0%;
+    bottom: -10%;
+    /* transform: translateX(-50%); */
+    width: 100%;
+    z-index: 3;
+}
+
+/* SEATS */
+#seats {
+    position: absolute;
+    bottom: 0;
+    left: 0%;
+    /* transform: translateX(-50%); */
+    bottom: -10%;
+    width: 100%;
+    z-index: 2;
+}
+
+/* SPOTLIGHT */
+#lightMan {
+    position: absolute;
+    bottom: 50%;
+    left: 40%;
+    /* transform: translateX(-50%); */
+    height: 200px;
+    width: auto;
+    z-index: 5;
+}
+
+/* CHARACTER */
+#character {
+    position: absolute;
+    bottom: 32%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    z-index: 6;
+}
+
+/* HAND MAN */
+#handMan {
+    position: absolute;
+    right: 2%;
+    bottom: 5%;
+    width: auto;
+    z-index: 7;
+}
+
+#like {
+    position: absolute;
+    right: 23%;
+    bottom: 42%;
+    width: 160px;
+    z-index: 6;
+}
+
+/* DIALOG BOX */
+#dialogueBox {
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    z-index: 8;
+}
