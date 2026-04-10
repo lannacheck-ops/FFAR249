@@ -19,7 +19,7 @@ body {
 /* CURTAINS */
 #curtainLeft {
     position: absolute;
-    left: -200px;
+    left: -20%;
     top: 0;
     height: 100%;
     z-index: 5;
@@ -27,7 +27,7 @@ body {
 
 #curtainRight {
     position: absolute;
-    right: -200px;
+    right: -15%;
     top: 0;
     height: 100%;
     z-index: 5;
@@ -87,10 +87,29 @@ body {
 
 #like {
     position: absolute;
-    right: 23%;
+    right: 25%;
     bottom: 42%;
-    width: 160px;
-    z-index: 6;
+    width: auto;
+    z-index: 4;
+}
+
+#light {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 120px;
+    height: auto;
+    z-index: 4;
+}
+
+#spotLight {
+    position: absolute;
+    left: 830px;
+    top: 60px;
+    width: 385px;
+    height: auto;
+    opacity: 0.5;
+    z-index: 4;
 }
 
 /* DIALOG BOX */

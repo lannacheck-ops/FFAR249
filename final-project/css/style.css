@@ -24,7 +24,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 4vw 5vw;
+    padding: 5vw 8vw;
 }
 
 .start-bg {
@@ -80,10 +80,10 @@ body {
 
 .character-wrap {
     position: absolute;
-    right: 4vw;
-    bottom: 2vh;
+    right: 6vw;
+    bottom: 7vh;
     z-index: 3;
-    width: min(42vw, 560px);
+    width: min(60vw, 760px);
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
