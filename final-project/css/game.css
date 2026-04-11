@@ -66,16 +66,6 @@ body {
     z-index: 5;
 }
 
-/* CHARACTER */
-#character {
-    position: absolute;
-    bottom: 32%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 120px;
-    z-index: 6;
-}
-
 /* HAND MAN */
 #handMan {
     position: absolute;
@@ -89,6 +79,7 @@ body {
     position: absolute;
     right: 25%;
     bottom: 42%;
+    height: 150px;
     width: auto;
     z-index: 4;
 }
@@ -99,7 +90,7 @@ body {
     top: 0;
     width: 120px;
     height: auto;
-    z-index: 4;
+    z-index: 6;
 }
 
 #spotLight {
@@ -109,7 +100,7 @@ body {
     width: 385px;
     height: auto;
     opacity: 0.5;
-    z-index: 4;
+    z-index: 6;
 }
 
 /* DIALOG BOX */
