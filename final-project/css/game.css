@@ -86,13 +86,76 @@ body {
     z-index: 9;
 }
 
+/* LIKE BUTTON */
 #like {
     position: absolute;
-    right: 25%;
+    right: 22%;
     bottom: 42%;
     height: 150px;
     width: auto;
     z-index: 7;
+    cursor: pointer;
+}
+
+#like.press {
+    display: block;
+}
+
+#popup {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    z-index: 30;
+}
+
+#popup.hidden {
+    display: none;
+}
+
+#popupBox {
+    width: 100%;
+    display: block;
+}
+
+#popupContent {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#question {
+    margin-top: 32px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 16px;
+    color: black;
+    text-align: center;
+}
+
+#input {
+    margin-top: 28px;
+    width: 70%;
+    padding: 10px 12px;
+    border: 2px solid black;
+    background: #d9d9d9;
+    color: black;
+    font-size: 15px;
+    outline: none;
+}
+
+#OkBtn {
+    margin-top: 26px;
+    padding: 8px 22px;
+    border: 2px solid black;
+    background: #d9d9d9;
+    color: black;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 14px;
+    cursor: pointer;
 }
 
 #light {
@@ -114,12 +177,60 @@ body {
     z-index: 6;
 }
 
-/* DIALOG BOX */
-#dialogueBox {
+
+#dialogueContainer {
     position: absolute;
     bottom: 8%;
     left: 50%;
     transform: translateX(-50%);
     width: 40%;
     z-index: 9;
+}
+
+#dialogueContainer.hidden {
+    display: none;
+}
+
+#dialogueBox {
+    width: 100%;
+    display: block;
+}
+
+#dialogueText {
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    right: 10%;
+
+    color: white;
+    font-size: 25px;
+    font-family: "IBM Plex Mono", monospace;
+
+    line-height: 1.4;
+}
+
+#continueText {
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+
+    font-size: 14px;
+    font-family: "IBM Plex Mono", monospace;
+    color: white;
+
+    animation: blink 2s infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.2;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }

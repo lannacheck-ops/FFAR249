@@ -1,16 +1,40 @@
+// Elements
 let light = document.querySelector("#light");
 let spotLight = document.querySelector("#spotLight");
 const game = document.querySelector("#game");
+const dialogueText = document.querySelector("#dialogueText");
+const like = document.querySelector("#like");
+const popup = document.querySelector("#popup");
+const input = document.querySelector("#input");
+const question = document.querySelector("#question");
+const OkBtn = document.querySelector("#OkBtn");
+const dialogueContainer = document.querySelector("#dialogueContainer");
+
+let userInput = "";
+
+// Keyboard
 let keyCodes = {
     a: 65,
     d: 68
 };
+// Data
+// Stage Data
 let stageLvl = -1;
 let characterData = null;
+
 let leftCharacterArr = [];
 let rightCharacterArr = [];
 let leftActive = false;
 let rightActive = false;
+
+// Dialog Data
+let dialogData = null;
+let dialogActive = false;
+let dialog = {
+    active: false,
+    stage: 0,
+    index: 0
+}
 window.onload = function () {
     // Fetch the JSON data
     goFetch();
@@ -19,12 +43,23 @@ window.onload = function () {
     let spotLightX = parseInt(getComputedStyle(spotLight).left);
     // Move spotlight using keyboard
     window.addEventListener("keydown", moveLight);
-    window.addEventListener("click", ToggleCurtains);
+    /**
+     * CLICK EVENTS
+     */
+    window.addEventListener("click", updateDialog);
+    // Like button
+    like.addEventListener("click", clickLike);
+    // OK button
+    OkBtn.addEventListener("click", okButton);
     /**
      * Move the spotlight using keyboard
      */
     function moveLight(e) {
-        e.preventDefault()
+        // e.preventDefault()
+        if (!game.classList.contains("open") || !popup.classList.contains("hidden") || like.classList.contains("press")) {
+            return;
+        }
+
         if (!leftActive) {
             if (e.code === "ArrowLeft" || e.keyCode === keyCodes.a) {
                 lightX = 600;
@@ -46,20 +81,19 @@ window.onload = function () {
             }
         }
 
-        console.log(lightX);
+        // console.log(lightX);
     }
 };
 /**
- * Load JSON file with the character/stagelvl data
+ * Load JSON file with the character/stagelvl data and dialog data
  */
 async function goFetch() {
     try {
-        // Try to do what is in the accolades
-        // Certain functions use waiting mechanics(see MDN functions that use waiting)
-        let response = await fetch('files/stages.json');
-        let data = await response.json();
-        // console.log(response);
-        characterData = data;
+        let response1 = await fetch('files/stages.json');
+        characterData = await response1.json();
+
+        let response2 = await fetch('files/mainDialog.json');
+        dialogData = await response2.json();
     }
     catch (err) {
         // Catches the error if the "response" is not fetched
@@ -93,7 +127,7 @@ function createCharacters(lvlIndex) {
     console.log(characterData);
     const leftData = characterData[lvlIndex].leftSide;
     const rightData = characterData[lvlIndex].rightSide;
-    console.log(leftData, rightData);
+
     let leftCharacter = new LeftCharacter(leftData, lvlIndex);
     let rightCharacter = new RightCharacter(rightData, lvlIndex);
     // Add new characters to an array
@@ -118,19 +152,104 @@ function createCharacters(lvlIndex) {
  * Open/Close curtains
  */
 function ToggleCurtains() {
+    // If the curtains are closed change the layout
     if (!game.classList.contains("open")) {
-        // setTimeout(changeLevel, 200)
+        // Reset spotlight position when curtains close
+        leftActive = false;
+        rightActive = false;
+        lightX = 850;
+        spotLightX = lightX - 130;
+        light.style.left = lightX + "px";
+        spotLight.style.left = spotLightX + "px";
+        // Change stage lvl
         changeLevel();
     }
+
     game.classList.toggle("open");
 }
 
-// /**
-//  * Close curtains
-//  */
-// function closeCurtains() {
-//     game.classList.remove("open");
-// }
 
+/**
+ * Update Dialog
+ */
+function updateDialog() {
+    // What dialog stage are we at 
+    const stageTxt = dialogData[dialog.stage]
+    // If the dialog index is shorter than the the amount of dialog in that stage then set the dialog active to true
+    if (dialog.index < stageTxt.length) {
+        dialog.active = true;
+        dialogueContainer.classList.remove("hidden");
+    }
+    // If the dialog index is longer than the the amount of dialog in that stage then set the dialog active to false
+    if (dialog.index >= stageTxt.length) {
+        dialog.active = false;
+        dialogueText.textContent = "";
+        dialogueContainer.classList.add("hidden");
+    }
 
+    if (dialog.stage === 0 && dialog.index === 1) {
+        ToggleCurtains();
+    }
+    if (dialog.stage === 1 && dialog.index === 0) {
+        ToggleCurtains();
+        like.classList.remove("press");
+    }
+    if (dialog.stage === 1 && dialog.index === 1) {
+        ToggleCurtains();
+    }
+    if (dialog.stage === 2 && dialog.index === 0) {
+        ToggleCurtains();
+        like.classList.remove("press");
+        setTimeout(ToggleCurtains, 1000);
+    }
+    if (dialog.stage === 3 && dialog.index === 0) {
+        ToggleCurtains();
+        like.classList.remove("press");
+        setTimeout(ToggleCurtains, 1000);
+    }
+    // Set the dialog text and add the dialog index
+    if (dialog.active) {
+        dialogueText.textContent = stageTxt[dialog.index];
+        dialog.index++
+    }
+}
 
+/**
+ * Click the like button to trigger popup box
+ */
+function clickLike() {
+    if (!like.classList.contains("press") && game.classList.contains("open")) {
+        if (leftActive || rightActive) {
+            if (leftActive) {
+                const stageQuestion = leftCharacterArr[stageLvl].question;
+                question.textContent = stageQuestion
+            }
+            if (rightActive) {
+                const stageQuestion = rightCharacterArr[stageLvl].question;
+                question.textContent = stageQuestion
+            }
+            popup.classList.remove("hidden");
+            input.focus();
+        }
+    }
+
+    if (like.classList.contains("press") && spotLight.style.opacity < 0.5) {
+        spotLight.style.opacity = parseFloat(spotLight.style.opacity) + 0.01;
+    }
+    if (like.classList.contains("press") && spotLight.style.opacity >= 0.5) {
+        dialog.stage++;
+        dialog.index = 0;
+        console.log(dialog.stage);
+    }
+}
+
+/**
+ * Click Ok button and hide the popup
+ */
+function okButton() {
+    userInput = input.value.trim();
+    like.classList.add("press");
+    popup.classList.add("hidden");
+    spotLight.style.opacity = 0.1;
+    input.value = "";
+}

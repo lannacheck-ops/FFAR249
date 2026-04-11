@@ -33,13 +33,33 @@
         <img src="images/hand-man.png" id="handMan" />
 
         <!-- TEXT BOX -->
-        <img src="images/mascot-txt-box.png" id="dialogueBox" />
+        <div id="dialogueContainer">
+            <img src="images/mascot-txt-box.png" id="dialogueBox" />
+
+            <p id="dialogueText">
+                Hello! Welcome to the show.
+            </p>
+            <p id="continueText">click to continue</p>
+        </div>
 
         <!-- LIGHT -->
         <img src="images/light.png" id="light" />
 
         <!-- SPOTLIGHT -->
         <img src="images/spotlight.png" id="spotLight" />
+
+        <!-- POPUP BOX -->
+        <div id="popup" class="hidden">
+            <img src="images/mascot-txt-box.png" id="popupBox" alt="Popup dialog box">
+
+            <div id="popupContent">
+                <p id="question"></p>
+
+                <input type="text" id="input" placeholder="Type here..." autocomplete="off">
+
+                <button id="OkBtn">OK</button>
+            </div>
+        </div>
 
     </div>
 
