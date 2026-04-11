@@ -6,36 +6,51 @@ let keyCodes = {
 };
 let stageLvl = -1;
 let characterData = null;
+let leftCharacterArr = [];
+let rightCharacterArr = [];
+let leftActive = false;
+let rightActive = false;
 window.onload = function () {
+    // Fetch the JSON data
     goFetch();
+    // Get the spotlight position
     let lightX = parseInt(getComputedStyle(light).left);
     let spotLightX = parseInt(getComputedStyle(spotLight).left);
+    // Move spotlight using keyboard
     window.addEventListener("keydown", moveLight);
     window.addEventListener("click", changeLevel);
-
+    /**
+     * Move the spotlight using keyboard
+     */
     function moveLight(e) {
         e.preventDefault()
-        if (lightX > 520) {
+        if (!leftActive) {
             if (e.code === "ArrowLeft" || e.keyCode === keyCodes.a) {
-                lightX -= 5;
+                lightX = 600;
                 spotLightX = lightX - 130;
-                light.style.left = lightX + "px"
-                spotLight.style.left = spotLightX + "px"
+                light.style.left = lightX + "px";
+                spotLight.style.left = spotLightX + "px";
+                leftActive = true;
+                rightActive = false;
             }
         }
-        if (lightX < 1180) {
+        if (!rightActive) {
             if (e.code === "ArrowRight" || e.keyCode === keyCodes.d) {
-                lightX += 5;
+                lightX = 1060;
                 spotLightX = lightX - 130;
-                light.style.left = lightX + "px"
-                spotLight.style.left = spotLightX + "px"
+                light.style.left = lightX + "px";
+                spotLight.style.left = spotLightX + "px";
+                rightActive = true;
+                leftActive = false;
             }
         }
 
         console.log(lightX);
     }
 };
-
+/**
+ * Load JSON file with the character/stagelvl data
+ */
 async function goFetch() {
     try {
         // Try to do what is in the accolades
@@ -78,12 +93,27 @@ function createCharacters(lvlIndex) {
     const leftData = characterData[lvlIndex].leftSide;
     const rightData = characterData[lvlIndex].rightSide;
     console.log(leftData, rightData);
-    let leftCharacter = new LeftCharacter(leftData);
-    let rightCharacter = new RightCharacter(rightData);
-
+    let leftCharacter = new LeftCharacter(leftData, lvlIndex);
+    let rightCharacter = new RightCharacter(rightData, lvlIndex);
+    // Add new characters to an array
+    leftCharacterArr.push(leftCharacter);
+    rightCharacterArr.push(rightCharacter);
+    // Render the characters
     leftCharacter.render();
     rightCharacter.render();
+
+    checkCharatersOnStage();
+    function checkCharatersOnStage() {
+        for (let i = 0; i < leftCharacterArr.length; i++) {
+            leftCharacterArr[i].checkStage(lvlIndex);
+        }
+        for (let i = 0; i < rightCharacterArr.length; i++) {
+            rightCharacterArr[i].checkStage(lvlIndex);
+        }
+    }
 }
+
+
 
 
 
