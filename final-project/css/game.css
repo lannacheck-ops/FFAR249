@@ -17,41 +17,52 @@ body {
 }
 
 /* CURTAINS */
-#curtainLeft {
+#curtainLeft,
+#curtainRight {
     position: absolute;
-    left: -20%;
     top: 0;
-    height: 100%;
-    z-index: 5;
+    height: auto;
+    z-index: 8;
+    transition: transform 1s ease-in-out;
+}
+
+/* closed position */
+#curtainLeft {
+    left: 0%;
 }
 
 #curtainRight {
-    position: absolute;
-    right: -15%;
-    top: 0;
-    height: 100%;
-    z-index: 5;
+    right: 0%;
 }
+
+/* OPEN ANIMATION */
+.open #curtainLeft {
+    transform: translateX(-60%);
+}
+
+.open #curtainRight {
+    transform: translateX(50%);
+}
+
 
 /* STAGE */
 #stage {
     position: absolute;
-    bottom: 18%;
+    top: -10%;
     left: 0%;
-    bottom: -10%;
     /* transform: translateX(-50%); */
-    width: 100%;
+    width: auto;
     z-index: 3;
 }
 
 /* SEATS */
 #seats {
     position: absolute;
-    bottom: 0;
+    top: -10%;
     left: 0%;
     /* transform: translateX(-50%); */
     bottom: -10%;
-    width: 100%;
+    width: auto;
     z-index: 2;
 }
 
@@ -72,7 +83,7 @@ body {
     right: 2%;
     bottom: 5%;
     width: auto;
-    z-index: 7;
+    z-index: 9;
 }
 
 #like {
@@ -81,12 +92,12 @@ body {
     bottom: 42%;
     height: 150px;
     width: auto;
-    z-index: 4;
+    z-index: 7;
 }
 
 #light {
     position: absolute;
-    left: 50%;
+    left: 850px;
     top: 0;
     width: 120px;
     height: auto;
@@ -95,7 +106,7 @@ body {
 
 #spotLight {
     position: absolute;
-    left: 830px;
+    left: 720px;
     top: 60px;
     width: 385px;
     height: auto;
@@ -110,5 +121,5 @@ body {
     left: 50%;
     transform: translateX(-50%);
     width: 40%;
-    z-index: 8;
+    z-index: 9;
 }

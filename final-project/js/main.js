@@ -1,5 +1,6 @@
 let light = document.querySelector("#light");
 let spotLight = document.querySelector("#spotLight");
+const game = document.querySelector("#game");
 let keyCodes = {
     a: 65,
     d: 68
@@ -18,7 +19,7 @@ window.onload = function () {
     let spotLightX = parseInt(getComputedStyle(spotLight).left);
     // Move spotlight using keyboard
     window.addEventListener("keydown", moveLight);
-    window.addEventListener("click", changeLevel);
+    window.addEventListener("click", ToggleCurtains);
     /**
      * Move the spotlight using keyboard
      */
@@ -113,7 +114,23 @@ function createCharacters(lvlIndex) {
     }
 }
 
+/**
+ * Open/Close curtains
+ */
+function ToggleCurtains() {
+    if (!game.classList.contains("open")) {
+        // setTimeout(changeLevel, 200)
+        changeLevel();
+    }
+    game.classList.toggle("open");
+}
 
+// /**
+//  * Close curtains
+//  */
+// function closeCurtains() {
+//     game.classList.remove("open");
+// }
 
 
 
