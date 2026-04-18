@@ -13,12 +13,13 @@ class LeftCharacter {
     render() {
         this.characterDiv.src = this.imgSrc;
         this.characterDiv.style.position = "absolute";
-        this.characterDiv.style.left = this.x + "%";
-        this.characterDiv.style.top = this.y + "%";
+        this.characterDiv.style.left = `clamp(200px,23vw, 650px)`;;
+        this.characterDiv.style.top = `clamp(110px, 10vw, 15vw)`;
         this.characterDiv.style.zIndex = 5;
         this.characterDiv.style.height = "auto";
         // this.characterDiv.style.minHeight = 320 + "px";
-        this.characterDiv.style.width = 30 + "vh";
+        this.characterDiv.style.width = "clamp(100px, 30vw, 320px)";
+        // Clamp(minimum size, preferred size, max size);
 
         // Add to the DOM
         document.querySelector("#game").appendChild(this.characterDiv);

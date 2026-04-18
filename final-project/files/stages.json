@@ -4,15 +4,15 @@
             "name": "drama",
             "question": "what is your favorite show?",
             "image": "images/characters/comedy-man.png",
-            "x": 20,
-            "y": 30
+            "x": 15,
+            "y": 13
         },
         "rightSide": {
             "name": "makeup",
             "question": "what is your favorite makeup brand?",
             "image": "images/characters/makeup-man.png",
             "x": 50,
-            "y": 30
+            "y": 13
         }
     },
     {
@@ -20,15 +20,15 @@
             "name": "fashion",
             "question": "what is your favorite clothing brand?",
             "image": "images/characters/shopping-man.png",
-            "x": 20,
-            "y": 30
+            "x": 15,
+            "y": 13
         },
         "rightSide": {
             "name": "games",
             "question": "what is your favorite video game?",
             "image": "images/characters/game-man.png",
             "x": 50,
-            "y": 30
+            "y": 13
         }
     },
     {
@@ -36,15 +36,15 @@
             "name": "music",
             "question": "what is your favorite song?",
             "image": "images/characters/radio-man.png",
-            "x": 20,
-            "y": 30
+            "x": 15,
+            "y": 13
         },
         "rightSide": {
             "name": "gym",
             "question": "what is your favorite sport OR sport's team?",
             "image": "images/characters/gym-man.png",
             "x": 50,
-            "y": 30
+            "y": 13
         }
     },
     {
@@ -52,15 +52,15 @@
             "name": "news",
             "question": "what platform do you use to read news?",
             "image": "images/characters/news-man.png",
-            "x": 20,
-            "y": 30
+            "x": 15,
+            "y": 13
         },
         "rightSide": {
             "name": "goku",
             "question": "who is your favorite dbz character?",
             "image": "images/characters/goku-man.png",
             "x": 50,
-            "y": 30
+            "y": 13
         }
     }
 ]
