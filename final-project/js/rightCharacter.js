@@ -14,11 +14,12 @@ class RightCharacter {
     render() {
         this.characterDiv.src = this.imgSrc;
         this.characterDiv.style.position = "absolute"
-        this.characterDiv.style.left = this.x + "px";
-        this.characterDiv.style.top = this.y + "px";
+        this.characterDiv.style.left = this.x + "%";
+        this.characterDiv.style.top = this.y + "%";
         this.characterDiv.style.zIndex = 5;
-        this.characterDiv.style.height = 320 + "px";
-        this.characterDiv.style.width = "auto";
+        this.characterDiv.style.height = "auto";
+        // this.characterDiv.style.minHeight = 320 + "px";
+        this.characterDiv.style.width = 25 + "vh";
         // Add to the DOM
         document.querySelector("#game").appendChild(this.characterDiv);
         console.log(this.characterDiv);
